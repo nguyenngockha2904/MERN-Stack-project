@@ -1,31 +1,21 @@
 // @flow 
 import { SwipeableDrawer } from '@material-ui/core';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import TinderCard from 'react-tinder-card';
 import './TinderCards.css';
+import axios from './axios.js';
 export const TinderCards = () => {
-    const [people, setPeople] = useState([
-        {
-            name: "Elon Musk",
-            url: "https://images.pexels.com/photos/3841338/pexels-photo-3841338.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-        },
-        {
-            name: "Jeff Bezoz",
-            url: "https://images.pexels.com/photos/3310693/pexels-photo-3310693.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-        },
-        {
-            name: "Jessica Rose",
-            url: "https://images.pexels.com/photos/1006265/pexels-photo-1006265.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-        },
-        {
-            name: "Kevins Jess",
-            url: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-        },
-        {
-            name: "Justin Safir",
-            url: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-        },
-    ]);
+    const [people, setPeople] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+            const req = await axios.get('/tinder/cards');
+            setPeople(req.data);
+        }
+        fetchData();
+    }, []);
+
+
     const swiped = useCallback((director, nameToDelete) => {
         console.log("removing: " + nameToDelete);
 
