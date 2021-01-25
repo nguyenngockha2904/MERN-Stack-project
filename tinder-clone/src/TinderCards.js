@@ -1,5 +1,4 @@
-// @flow 
-import { SwipeableDrawer } from '@material-ui/core';
+
 import React, { useCallback, useEffect, useState } from 'react';
 import TinderCard from 'react-tinder-card';
 import './TinderCards.css';

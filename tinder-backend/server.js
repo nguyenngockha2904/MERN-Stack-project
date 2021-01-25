@@ -33,9 +33,6 @@ app.post('/tinder/cards', (req, res) => {
     })
 
 });
-app.delete('/tinder/cards', (req, res) => {
-    Cards.deleteMany(any);
-})
 app.get('/tinder/cards', (req, res) => {
     Cards.find((err, data) => {
         if (err) {
